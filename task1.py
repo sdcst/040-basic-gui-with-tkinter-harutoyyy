@@ -1,30 +1,54 @@
-import tkinter as tk 
-from tkinter import *
+import tkinter as tk
+import tkinter.messagebox
 
-window = tk.Tk()
-window.title("Packing Widgets example")
-# Note, in this example, we removed the geometry to set the window size
-# because packing the widgets tries to make the window as small as possible
+# Customize main window
+root = tk.Tk()
+root.title('GUI Assignment')
 
-"""
-A window actually has an infinite running while loop while
-it checks to see if any of the features of the window (buttons,
-text entry, etc) are being mainpulated.  These features are also
-called WIDGETS, and we'll see how they can be added in the next few
-files.
-"""
 
-#creates a text label widget and stores it into the object "label1"
-#Label options can be found at http://effbot.org/tkinterbook/label.htm
-label1 = tk.Label(window,text="Text that does\nnothing is a label", bg="#ee0000")
 
-#creates a text label widget that contains an image
-# note: PhotoImage is part of the tk module, so without using
-# from tkinter import *, we would have had to do: tk.PhotoImage(file="dog.ong")
-dogphoto = PhotoImage(file="dog.png")
-label2 = tk.Label(window, image=dogphoto)
+# Create the frames, right, left, and bottom, and pack them
+bframe = tk.LabelFrame(root, highlightthickness=0, borderwidth=0, padx=100, pady=50)
+bframe.pack(side='bottom')
+rframe = tk.LabelFrame(root, highlightthickness=0, borderwidth=0, padx=100, pady=50)
+rframe.pack(side='right')
+lframe = tk.LabelFrame(root, highlightthickness=0, borderwidth=0, padx=100, pady=50)
+lframe.pack(side='left')
 
-lable3 = tk.Label(window, text="Note that an image can be in a label or a button!")
 
-#creates a button: see https://www.tutorialspoint.com/python/tk_button.htm for list of options
-button1 = tk.Button(window,text="A button\nis clickable")
+# Make the label and the entry box for the right frame
+dlabel = tk.Label(rframe, text = 'Enter the distance', )
+dentry = tk.Entry(rframe, width=75)
+# Pack the label and entry
+dlabel.pack(side='left')
+dentry.pack(side="right")
+dist = 3.0
+temp =(dentry.get())
+# Create the convert command
+def convert():
+    if radio_var.get()==1:
+        tkinter.messagebox.showinfo('Distance',temp / dist )
+
+# Make the convert and quit buttons
+b = tk.Button(bframe, text="Convert", command=convert)
+quit = tk.Button(bframe, text='Quit', command=root.destroy)
+
+# Pack the buttons
+b.pack(side='left')
+quit.pack(side='right')
+
+# Make the radio variable 
+radio_var = tk.IntVar()
+radio_var.set(1)
+
+# Make the radio buttons for the left frame
+rb = tk.Radiobutton(lframe, text='Km to Miles', variable=radio_var, value=1)
+rb2 = tk.Radiobutton(lframe, text='Miles to Km', variable=radio_var, value=2)
+
+# Pack The Radio Buttons
+rb.pack()
+rb2.pack()
+
+    
+
+root.mainloop()
