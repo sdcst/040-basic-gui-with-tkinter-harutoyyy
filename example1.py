@@ -16,6 +16,12 @@ We create an object using some of the built in functions from the
 tkinter Tk class. We also use some of the object methods to set
 some of the properties of the window.
 """
+
+
+
+
+
+
 window = tk.Tk()
 window.title("Hi!")
 window.geometry("200x400")
