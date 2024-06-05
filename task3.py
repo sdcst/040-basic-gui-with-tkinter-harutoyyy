@@ -23,6 +23,4 @@ dog.place(x=200,y=20)
 text.place(x=230,y=20)
 text2.place(x=200,y=100)
 
-
-
 win.mainloop()
